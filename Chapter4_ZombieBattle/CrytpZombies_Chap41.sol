@@ -1,9 +1,8 @@
 pragma solidity ^0.5.0;
 
-import "browser/CryptoZombies_Chap4.sol";
-
- contract KittyInterface{
-  function getKitty(uint256 _id) external view returns (
+import "./CryptoZombies_Chap4.sol";
+contract KittyInterface{
+    function getKitty(uint256 _id) external view returns (
     bool isGestating,
     bool isReady,
     uint256 cooldownIndex,
@@ -14,7 +13,7 @@ import "browser/CryptoZombies_Chap4.sol";
     uint256 sireId,
     uint256 generation,
     uint256 genes
-  );
+    );
 }
 
 contract ZombieFeeding is ZombieFactory{
