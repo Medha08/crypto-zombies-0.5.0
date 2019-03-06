@@ -1,9 +1,8 @@
 pragma solidity ^0.5.0;
 
-import "./CryptoZombies_Chapter2.sol";
-
- contract KittyInterface{
-  function getKitty(uint256 _id) external view returns (
+import "./CryptoZombies_Chapter3.sol";
+contract KittyInterface{
+    function getKitty(uint256 _id) external view returns (
     bool isGestating,
     bool isReady,
     uint256 cooldownIndex,
@@ -14,18 +13,23 @@ import "./CryptoZombies_Chapter2.sol";
     uint256 sireId,
     uint256 generation,
     uint256 genes
-  );
+    );
 }
 
 contract ZombieFeeding is ZombieFactory{
     
-    address ckAddress = 0x06012c8cf97BEaD5deAe237070F9587f8E7A266d;
-    KittyInterface kittyContract = KittyInterface(ckAddress);
+   
+    KittyInterface kittyContract;
     
-    function feedAndMultiply(uint _zombieId, uint _targetDna, string memory _species) public {
+    function setKittyContractAddress(address _address) external onlyOwner {
+        kittyContract = KittyInterface(_address);
+    }
+    
+    function feedAndMultiply(uint _zombieId, uint _targetDna, string memory _species) internal {
         require(msg.sender ==  zombieToOwner[_zombieId]);
         
         Zombie storage myZombie = zombies[_zombieId];
+        require(_isReady(myZombie));
         
         _targetDna = _targetDna % dnaModulus;
          uint newDna = (myZombie.dna + _targetDna) / 2;
@@ -34,9 +38,19 @@ contract ZombieFeeding is ZombieFactory{
          }
          
          _createZombie("NoName",newDna);
+         _triggerCooldown(myZombie);
          
           
         
+    }
+    
+    function _triggerCooldown(Zombie storage _zombie) internal  {
+        _zombie.readyTime = uint32(now + coolDownTime);
+    }
+    
+    function _isReady(Zombie storage _zombie) internal view returns(bool){
+        return (_zombie.readyTime <= now);
+         
     }
     
     function feedOnKitty(uint _kittyId,uint _zombieId)public{
