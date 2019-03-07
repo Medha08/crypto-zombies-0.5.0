@@ -3,6 +3,10 @@ pragma solidity ^0.5.0;
 import "./CryptoZombies_Chap53.sol";
 import "./erc721.sol";
 
+///@title A Contract that manages transfering zombie ownership
+///@author Medha Pandey
+///@ Compliant with OpenZeppelin's implementation of the ERC721 spec draft
+
 contract ZombieOwnership is ZombieAttack, ERC721 {
     
     mapping (uint => address) zombieApprovals ;
