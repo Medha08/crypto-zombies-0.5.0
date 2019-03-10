@@ -1,6 +1,6 @@
 pragma solidity ^0.5.0;
 
-import "./CryptoZombies_Chap52.sol";
+import "./CryptoZombies_Chap62.sol";
 
 contract ZombieAttack is ZombieHelper{
     

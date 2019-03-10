@@ -1,6 +1,6 @@
 pragma solidity ^0.5.0;
 
-import "./CrytpZombies_Chap51.sol";
+import "./CrytpZombies_Chap61.sol";
 
 contract ZombieHelper is ZombieFeeding{
     

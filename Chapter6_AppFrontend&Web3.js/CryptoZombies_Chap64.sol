@@ -1,6 +1,6 @@
 pragma solidity ^0.5.0;
 
-import "./CryptoZombies_Chap53.sol";
+import "./CryptoZombies_Chap63.sol";
 import "./erc721.sol";
 
 ///@title A Contract that manages transfering zombie ownership

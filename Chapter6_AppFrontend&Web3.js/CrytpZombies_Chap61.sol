@@ -1,6 +1,6 @@
 pragma solidity ^0.5.0;
 
-import "./CryptoZombies_Chap5.sol";
+import "./CryptoZombies_Chap6.sol";
 contract KittyInterface{
   function getKitty(uint256 _id) external view returns (
     bool isGestating,
